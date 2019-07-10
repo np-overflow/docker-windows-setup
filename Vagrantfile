@@ -14,6 +14,9 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
 
+  # Use the install.sh to provision
+  config.vm.provision "shell", path: "install.sh"
+
   # continually sync the src folder
   config.vm.synced_folder "src/", "/home/vagrant/src", owner: "vagrant",
     group: "vagrant", create: true

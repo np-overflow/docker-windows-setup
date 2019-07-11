@@ -14,6 +14,11 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
 
+  # Forward port 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  # Move the required files for install.sh
+  config.vm.provision "file", source: "./daemon.json",
+    destination: "/home/vagrant/daemon.json"
   # Use the install.sh to provision
   config.vm.provision "shell", path: "install.sh"
 
